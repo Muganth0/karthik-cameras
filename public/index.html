@@ -124,12 +124,25 @@ URL:${location.href}
 NOTE:Buy • Sell • Exchange • Accessories
 END:VCARD`;
 
-document.getElementById("saveContact").addEventListener("click",()=>{
+document.getElementById("saveContact").addEventListener("click",async()=>{
   const blob=new Blob([contact],{type:"text/vcard;charset=utf-8"});
+  const file=new File([blob],"Karthikeyan-Karthik-Cameras.vcf",{type:"text/vcard"});
+  try{
+    // On supported phones, open the native share/import sheet with the contact card.
+    // This is the closest web-only equivalent to saving directly into Contacts.
+    if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],title:"Karthikeyan — Karthik Cameras",text:"Save Karthikeyan to your contacts."});
+      return;
+    }
+  }catch(e){
+    if(e && e.name==="AbortError") return;
+  }
+  // Fallback for browsers that cannot share files: download the standard VCF.
   const url=URL.createObjectURL(blob);
   const a=document.createElement("a");
-  a.href=url;a.download="Karthikeyan-Karthik-Cameras.vcf";a.click();
-  setTimeout(()=>URL.revokeObjectURL(url),500);
+  a.href=url;a.download="Karthikeyan-Karthik-Cameras.vcf";
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 
 document.getElementById("shareBtn").addEventListener("click",async()=>{
