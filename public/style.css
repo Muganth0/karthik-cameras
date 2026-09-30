@@ -98,3 +98,14 @@ footer span{color:var(--gold);padding:0 7px}
   .profile-brand{width:75px}
   .profile-copy h1{font-size:29px}
 }
+.contact-qr{margin:0 30px 30px;padding:22px;border:1px solid var(--line);border-radius:20px;background:#faf9f6;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.contact-qr .section-title{font-size:20px}
+.contact-qr p{margin:10px 0 0;max-width:440px;color:#777;font-size:13px;line-height:1.55}
+.qr-card{flex:none;width:156px;height:156px;padding:9px;background:#fff;border:1px solid #dedbd3;border-radius:16px;box-shadow:0 8px 24px #00000010}
+.qr-card img{display:block;width:100%;height:100%;image-rendering:auto}
+@media(max-width:600px){
+  .contact-qr{margin:0 20px 24px;padding:20px;flex-direction:column;text-align:center}
+  .contact-qr .section-title i{margin-left:auto;margin-right:auto}
+  .contact-qr p{font-size:12px}
+  .qr-card{width:180px;height:180px}
+}
