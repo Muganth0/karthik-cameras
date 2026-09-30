@@ -125,9 +125,7 @@ NOTE:Buy • Sell • Exchange • Accessories
 END:VCARD`;
 
 document.getElementById("saveContact").addEventListener("click",()=>{
-  // Open a real .vcf resource. On phones that register vCard with Contacts,
-  // the OS can offer "Open with Contacts" / "Add to Contacts" instead of
-  // treating it as a JavaScript-generated download.
+  // Use a real vCard resource so supported phones can hand it to Contacts.
   location.href="/contact.vcf";
 });
 
